@@ -1,6 +1,6 @@
 # [stringify-anything](https://bagrounds.gitlab.io/stringify-anything)
 
-Fork me!
+Stringify anything
 
 [![build-status](https://gitlab.com/bagrounds/stringify-anything/badges/master/build.svg)](https://gitlab.com/bagrounds/stringify-anything/commits/master)
 [![coverage-report](https://gitlab.com/bagrounds/stringify-anything/badges/master/coverage.svg)](https://gitlab.com/bagrounds/stringify-anything/commits/master)
