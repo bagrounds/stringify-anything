@@ -9,7 +9,7 @@
   module.exports = [
     {
       input: 'a string',
-      result: funAssert.equal('a string'),
+      result: funAssert.equal('"a string"'),
       sync: true
     }
   ].map(funTest)
