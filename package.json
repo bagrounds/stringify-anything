@@ -38,6 +38,7 @@
     "tap": "^8.0.1"
   },
   "dependencies": {
-    "fun-test": "^0.9.1"
+    "fun-test": "^0.9.1",
+    "json-stringify-safe": "^5.0.1"
   }
 }
