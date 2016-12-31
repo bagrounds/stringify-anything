@@ -11,6 +11,11 @@
       input: 'a string',
       result: funAssert.equal('"a string"'),
       sync: true
+    },
+    {
+      input: 3,
+      result: funAssert.equal('3'),
+      sync: true
     }
   ].map(funTest)
 })()
