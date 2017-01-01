@@ -25,7 +25,10 @@
       return 'undefined'
     }
 
-    if (anything.hasOwnProperty('toString')) {
+    if (
+      anything.hasOwnProperty('toString') &&
+        typeof anything.toString === 'function'
+    ) {
       return anything.toString()
     }
 
