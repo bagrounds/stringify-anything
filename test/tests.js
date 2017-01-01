@@ -16,6 +16,11 @@
       input: 3,
       result: funAssert.equal('3'),
       sync: true
+    },
+    {
+      input: null,
+      result: funAssert.equal('null'),
+      sync: true
     }
   ].map(funTest)
 })()

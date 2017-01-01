@@ -17,6 +17,10 @@
    * @return {String} a reasonable string representation of anything
    */
   function stringify (anything) {
+    if (anything === null) {
+      return 'null'
+    }
+
     if (anything.hasOwnProperty('toString')) {
       return anything.toString()
     }
