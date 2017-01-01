@@ -21,6 +21,10 @@
       return 'null'
     }
 
+    if (anything === undefined) {
+      return 'undefined'
+    }
+
     if (anything.hasOwnProperty('toString')) {
       return anything.toString()
     }

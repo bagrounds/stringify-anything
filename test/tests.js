@@ -21,6 +21,11 @@
       input: null,
       result: funAssert.equal('null'),
       sync: true
+    },
+    {
+      input: undefined,
+      result: funAssert.equal('undefined'),
+      sync: true
     }
   ].map(funTest)
 })()
