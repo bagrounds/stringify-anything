@@ -66,7 +66,63 @@
       input: function () {},
       result: funAssert.equal('anonymousFunction'),
       sync: true
+    },
+    {
+      input: functionWithToStringMethod(),
+      result: funAssert.equal(functionWithToStringMethod().toString()),
+      sync: true
+    },
+    {
+      input: functionWithToStringProperty(),
+      result: funAssert.equal(functionWithToStringProperty().name),
+      sync: true
+    },
+    {
+      input: objectWithToStringProperty(),
+      result: funAssert.equal('{"toString":"gotcha!"}'),
+      sync: true
+    },
+    {
+      input: objectWithToStringMethod(),
+      result: funAssert.equal(objectWithToStringMethod().toString()),
+      sync: true
     }
   ].map(funTest)
+
+  function functionWithToStringMethod () {
+    function result () {}
+
+    result.toString = function toString () {
+      return 'a special representation'
+    }
+
+    return result
+  }
+
+  function functionWithToStringProperty () {
+    function result () {}
+
+    result.toString = 'gotcha!'
+
+    return result
+  }
+
+  function objectWithToStringProperty () {
+    var result = {
+      toString: 'gotcha!'
+    }
+
+    return result
+  }
+
+  function objectWithToStringMethod () {
+    var result = {
+      toString: function toString () {
+        return 'a special representation'
+      }
+    }
+
+    return result
+  }
 })()
 
