@@ -30,7 +30,7 @@
     }
 
     if (typeof anything === 'function') {
-      return anything.name
+      return anything.name || 'anonymousFunction'
     }
 
     return safeStringify(anything)
