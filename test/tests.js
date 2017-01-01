@@ -31,6 +31,21 @@
       input: undefined,
       result: funAssert.equal('undefined'),
       sync: true
+    },
+    {
+      input: {},
+      result: funAssert.equal('{}'),
+      sync: true
+    },
+    {
+      input: {a: 'a'},
+      result: funAssert.equal('{"a":"a"}'),
+      sync: true
+    },
+    {
+      input: {a: {a: 'a'}},
+      result: funAssert.equal('{"a":{"a":"a"}}'),
+      sync: true
     }
   ].map(funTest)
 })()
