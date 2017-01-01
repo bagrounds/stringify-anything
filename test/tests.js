@@ -18,6 +18,11 @@
       sync: true
     },
     {
+      input: true,
+      result: funAssert.equal('true'),
+      sync: true
+    },
+    {
       input: null,
       result: funAssert.equal('null'),
       sync: true
