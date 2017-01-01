@@ -56,6 +56,16 @@
       input: [[]],
       result: funAssert.equal('[[]]'),
       sync: true
+    },
+    {
+      input: function functionName () {},
+      result: funAssert.equal('functionName'),
+      sync: true
+    },
+    {
+      input: function () {},
+      result: funAssert.equal('anonymousFunction'),
+      sync: true
     }
   ].map(funTest)
 })()
