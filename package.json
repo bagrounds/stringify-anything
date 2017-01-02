@@ -29,16 +29,15 @@
   "homepage": "https://gitlab.com/bagrounds/stringify-anything#README",
   "devDependencies": {
     "eslint": "^3.12.2",
-    "fun-assert": "^0.5.0",
-    "fun-test": "^0.8.2",
-    "fun-test-runner": "^0.3.0",
+    "fun-assert": "latest",
+    "fun-test": "latest",
+    "fun-test-runner": "latest",
     "jsdoc": "^3.4.3",
     "madge": "^1.4.3",
     "showdown": "^1.5.4",
     "tap": "^8.0.1"
   },
   "dependencies": {
-    "fun-test": "^0.9.1",
     "json-stringify-safe": "^5.0.1"
   }
 }
