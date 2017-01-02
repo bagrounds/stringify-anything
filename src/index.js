@@ -14,9 +14,10 @@
   /**
    *
    * @param {*} anything to be stringified
+   * @param {*} input if anything has toString that accepts input, use this
    * @return {String} a reasonable string representation of anything
    */
-  function stringify (anything) {
+  function stringify (anything, input) {
     if (anything === null) {
       return 'null'
     }
@@ -29,7 +30,7 @@
       anything.hasOwnProperty('toString') &&
         typeof anything.toString === 'function'
     ) {
-      return anything.toString()
+      return anything.toString(input)
     }
 
     if (typeof anything === 'function') {
