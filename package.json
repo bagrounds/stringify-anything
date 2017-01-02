@@ -1,6 +1,6 @@
 {
   "name": "stringify-anything",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Stringify anything",
   "main": "src/index.js",
   "scripts": {
