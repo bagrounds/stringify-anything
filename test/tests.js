@@ -29,12 +29,12 @@
     },
     {
       input: null,
-      result: funAssert.equal('null'),
+      result: funAssert.equal('Null'),
       sync: true
     },
     {
       input: undefined,
-      result: funAssert.equal('undefined'),
+      result: funAssert.equal('Undefined'),
       sync: true
     },
     {
