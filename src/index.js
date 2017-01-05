@@ -27,8 +27,9 @@
     }
 
     if (
-      anything.hasOwnProperty('toString') &&
-        typeof anything.toString === 'function'
+      anything instanceof Error ||
+      (anything.hasOwnProperty('toString') &&
+        typeof anything.toString === 'function')
     ) {
       return anything.toString(input)
     }

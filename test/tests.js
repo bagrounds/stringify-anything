@@ -8,6 +8,11 @@
   /* exports */
   module.exports = [
     {
+      input: new Error('error message'),
+      result: funAssert.equal('Error: error message'),
+      sync: true
+    },
+    {
       input: 'a string',
       result: funAssert.equal('"a string"'),
       sync: true
