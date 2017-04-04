@@ -39,8 +39,7 @@
   },
   "dependencies": {
     "fun-case": "^0.1.0",
-    "fun-constant": "^0.1.0",
-    "fun-predicate": "^0.14.0",
+    "fun-constant": "^0.1.1",
     "json-stringify-safe": "^5.0.1"
   }
 }

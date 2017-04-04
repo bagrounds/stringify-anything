@@ -8,7 +8,6 @@
   /* imports */
   var safeStringify = require('json-stringify-safe')
   var K = require('fun-constant')
-  var funPredicate = require('fun-predicate')
   var funCase = require('fun-case')
 
   /* exports */
@@ -17,27 +16,27 @@
   function stringify (anything) {
     return funCase([
       {
+        p: isUndefined,
+        f: K('undefined')
+      },
+      {
         p: hasToStringMethod,
         f: toString
       },
       {
-        p: funPredicate.type('Function'),
+        p: isInstanceOf(Function),
         f: functionToString
       },
       {
-        p: funPredicate.type('Undefined'),
-        f: K('undefined')
-      },
-      {
-        p: funPredicate.type('RegExp'),
+        p: isInstanceOf(RegExp),
         f: toString
       },
       {
-        p: funPredicate.type('Error'),
+        p: isInstanceOf(Error),
         f: toString
       },
       {
-        p: funPredicate.type('Array'),
+        p: isInstanceOf(Array),
         f: arrayToString
       },
       {
@@ -45,6 +44,16 @@
         f: safeStringify
       }
     ])(anything)
+  }
+
+  function isInstanceOf (instance) {
+    return function (a) {
+      return a instanceof instance
+    }
+  }
+
+  function isUndefined (x) {
+    return x === undefined
   }
 
   function arrayToString (array) {
