@@ -29,12 +29,12 @@
     },
     {
       input: null,
-      result: funAssert.equal('Null'),
+      result: funAssert.equal('null'),
       sync: true
     },
     {
       input: undefined,
-      result: funAssert.equal('Undefined'),
+      result: funAssert.equal('undefined'),
       sync: true
     },
     {
@@ -68,8 +68,8 @@
       sync: true
     },
     {
-      input: function () {},
-      result: funAssert.equal('anonymousFunction'),
+      input: (function () { return function () {} })(),
+      result: funAssert.equal('=>'),
       sync: true
     },
     {

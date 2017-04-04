@@ -30,14 +30,18 @@
   "devDependencies": {
     "eslint": "^3.12.2",
     "fun-assert": "latest",
-    "fun-test": "latest",
-    "fun-test-runner": "latest",
+    "fun-test": "^0.10",
+    "fun-test-runner": "^0.4",
     "jsdoc": "^3.4.3",
     "madge": "^1.4.3",
     "showdown": "^1.5.4",
     "tap": "^8.0.1"
   },
   "dependencies": {
+    "fun-case": "^0.1.0",
+    "fun-constant": "^0.1.0",
+    "fun-curry": "^0.2.2",
+    "fun-predicate": "^0.13.1",
     "json-stringify-safe": "^5.0.1"
   }
 }

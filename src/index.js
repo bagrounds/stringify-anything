@@ -7,54 +7,63 @@
 
   /* imports */
   var safeStringify = require('json-stringify-safe')
+  var K = require('fun-constant')
+  var funPredicate = require('fun-predicate')
+  var curry = require('fun-curry')
+  var funCase = require('fun-case')
 
   /* exports */
   module.exports = stringify
 
-  var typeStringifier = {
-    Null: typeOf,
-    Undefined: typeOf,
-    Error: toString,
-    Array: function (array) {
-      if (array.length) {
-        return '[' + array.map(stringify) + ']'
+  function stringify (anything) {
+    return funCase([
+      {
+        p: hasToStringMethod,
+        f: toString
+      },
+      {
+        p: curry(funPredicate.type)('Function'),
+        f: functionToString
+      },
+      {
+        p: curry(funPredicate.type)('Undefined'),
+        f: K('undefined')
+      },
+      {
+        p: curry(funPredicate.type)('RegExp'),
+        f: toString
+      },
+      {
+        p: curry(funPredicate.type)('Error'),
+        f: toString
+      },
+      {
+        p: curry(funPredicate.type)('Array'),
+        f: arrayToString
+      },
+      {
+        p: K(true),
+        f: safeStringify
       }
-
-      return safeStringify(array)
-    }
+    ])(anything)
   }
 
-  /**
-   *
-   * @param {*} anything to be stringified
-   * @param {*} input if anything has toString that accepts input, use this
-   * @return {String} a reasonable string representation of anything
-   */
-  function stringify (anything, input) {
-    var type = typeOf(anything)
+  function arrayToString (array) {
+    return '[' + array.map(stringify).join(',') + ']'
+  }
 
-    if (typeStringifier[type]) {
-      return typeStringifier[type](anything)
-    }
-
-    if (anything.hasOwnProperty('toString') &&
-      typeOf(anything.toString) === 'Function') {
-      return anything.toString(input)
-    }
-
-    if (type === 'Function') {
-      return anything.name || 'anonymousFunction'
-    }
-
-    return safeStringify(anything)
+  function functionToString (x) {
+    return x.name || '=>'
   }
 
   function toString (x) {
     return x.toString()
   }
 
-  function typeOf (x) {
-    return Object.prototype.toString.call(x).slice(8, -1)
+  function hasToStringMethod (x) {
+    return x &&
+      x.hasOwnProperty('toString') &&
+      funPredicate.type('Function')(x.toString)
   }
 })()
 
