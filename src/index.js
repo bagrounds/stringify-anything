@@ -7,8 +7,6 @@
 
   /* imports */
   var safeStringify = require('json-stringify-safe')
-  var K = require('fun-constant')
-  var funCase = require('fun-case')
 
   /* exports */
   module.exports = stringify
@@ -72,6 +70,24 @@
     return x &&
       x.hasOwnProperty('toString') &&
       isInstanceOf(Function)(x.toString)
+  }
+
+  function K (value) {
+    return function () {
+      return value
+    }
+  }
+
+  function funCase (options) {
+    return function (subject) {
+      return options.reduce(function (a, b) {
+        return a.p(subject) ? a : b
+      }, { p: K(false), f: id }).f(subject)
+    }
+  }
+
+  function id (x) {
+    return x
   }
 })()
 

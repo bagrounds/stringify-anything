@@ -38,8 +38,6 @@
     "tap": "^8.0.1"
   },
   "dependencies": {
-    "fun-case": "latest",
-    "fun-constant": "latest",
     "json-stringify-safe": "^5.0.1"
   }
 }
