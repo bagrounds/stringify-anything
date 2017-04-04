@@ -9,7 +9,6 @@
   var safeStringify = require('json-stringify-safe')
   var K = require('fun-constant')
   var funPredicate = require('fun-predicate')
-  var curry = require('fun-curry')
   var funCase = require('fun-case')
 
   /* exports */
@@ -22,23 +21,23 @@
         f: toString
       },
       {
-        p: curry(funPredicate.type)('Function'),
+        p: funPredicate.type('Function'),
         f: functionToString
       },
       {
-        p: curry(funPredicate.type)('Undefined'),
+        p: funPredicate.type('Undefined'),
         f: K('undefined')
       },
       {
-        p: curry(funPredicate.type)('RegExp'),
+        p: funPredicate.type('RegExp'),
         f: toString
       },
       {
-        p: curry(funPredicate.type)('Error'),
+        p: funPredicate.type('Error'),
         f: toString
       },
       {
-        p: curry(funPredicate.type)('Array'),
+        p: funPredicate.type('Array'),
         f: arrayToString
       },
       {
@@ -63,7 +62,7 @@
   function hasToStringMethod (x) {
     return x &&
       x.hasOwnProperty('toString') &&
-      funPredicate.type('Function')(x.toString)
+      funPredicate.type('Function', x.toString)
   }
 })()
 
