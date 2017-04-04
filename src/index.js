@@ -71,7 +71,7 @@
   function hasToStringMethod (x) {
     return x &&
       x.hasOwnProperty('toString') &&
-      funPredicate.type('Function', x.toString)
+      isInstanceOf(Function)(x.toString)
   }
 })()
 
