@@ -15,6 +15,10 @@
     return stringifySafe(anything, function (key, value) {
       return (typeof value === 'function')
         ? '[' + (value.name || '=>') + ']'
+        : (value instanceof RegExp || value instanceof Error)
+        ? '[' + value.toString() + ']'
+        : (value === undefined)
+        ? 'undefined'
         : value
     })
   }
