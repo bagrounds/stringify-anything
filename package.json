@@ -29,7 +29,7 @@
   "homepage": "https://gitlab.com/bagrounds/stringify-anything#README",
   "devDependencies": {
     "eslint": "^3.19.0",
-    "fun-test": "^0.22.0",
+    "fun-test": "^0.22.1",
     "fun-test-runner": "^0.8.1",
     "jsdoc": "^3.4.3",
     "madge": "^1.6.0",
