@@ -5,11 +5,6 @@
 ;(function () {
   'use strict'
 
-  /* imports */
-  var predicate = require('fun-predicate')
-  var array = require('fun-array')
-  var object = require('fun-object')
-
   /* exports */
   module.exports = stringify
 
@@ -22,38 +17,63 @@
    * @return {String} representation of anything
    */
   function stringify (anything) { // eslint-disable-line max-statements
-    if (predicate.type('Null|Boolean|Number|String', anything)) {
+    if (isPrimitive(anything)) {
       return JSON.stringify(anything)
     }
 
-    if (predicate.type('Undefined', anything)) {
+    if (anything === undefined) {
       return 'undefined'
     }
 
-    if (predicate.type('Function', anything)) {
+    if (anything instanceof Function) {
       return anything.name
         ? anything.name +
-        '(' + array.repeat(anything.length, '').join(',') + ')'
-        : '(' + array.repeat(anything.length, '').join(',') + ')=>'
+        '(' + repeat(anything.length, '').join(',') + ')'
+        : '(' + repeat(anything.length, '').join(',') + ')=>'
     }
 
     if (anything instanceof RegExp || anything instanceof Error) {
       return anything.toString()
     }
 
-    if (predicate.type('Array', anything)) {
-      return '[' + array.map(stringify, anything).join(',') + ']'
+    if (anything instanceof Array) {
+      return '[' + anything.map(stringify).join(',') + ']'
     }
 
-    if (predicate.type('Object', anything)) {
+    if (anything instanceof Object) {
       return '{' +
-        array.zipWith(
+        zipWith(
           join,
-          object.keys(anything),
-          object.values(anything).map(stringify)
+          Object.keys(anything),
+          values(anything).map(stringify)
         ).join(',') +
         '}'
     }
+  }
+
+  function isPrimitive (x) {
+    return x === null ||
+      typeof x === 'boolean' ||
+      typeof x === 'number' ||
+      typeof x === 'string'
+  }
+
+  function repeat (n, s) {
+    return Array.apply(null, { length: n }).map(function () {
+      return s
+    })
+  }
+
+  function zipWith (f, a1, a2) {
+    return a1.map(function (e, i) {
+      return f(e, a2[i])
+    })
+  }
+
+  function values (object) {
+    return Object.keys(object).map(function (key) {
+      return object[key]
+    })
   }
 
   function join (key, value) {

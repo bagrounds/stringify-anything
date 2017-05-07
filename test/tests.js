@@ -3,85 +3,70 @@
 
   /* imports */
   var funTest = require('fun-test')
-  var funAssert = require('fun-assert')
+  var predicate = require('fun-predicate')
 
   /* exports */
   module.exports = [
     {
-      input: new Error('error message'),
-      result: funAssert.equal('Error: error message'),
-      sync: true
+      inputs: [new Error('error message')],
+      predicate: predicate.equal('Error: error message')
     },
     {
-      input: 'a string',
-      result: funAssert.equal('"a string"'),
-      sync: true
+      inputs: ['a string'],
+      predicate: predicate.equal('"a string"')
     },
     {
-      input: 3,
-      result: funAssert.equal('3'),
-      sync: true
+      inputs: [3],
+      predicate: predicate.equal('3')
     },
     {
-      input: true,
-      result: funAssert.equal('true'),
-      sync: true
+      inputs: [true],
+      predicate: predicate.equal('true')
     },
     {
-      input: null,
-      result: funAssert.equal('null'),
-      sync: true
+      inputs: [null],
+      predicate: predicate.equal('null')
     },
     {
-      input: undefined,
-      result: funAssert.equal('undefined'),
-      sync: true
+      inputs: [undefined],
+      predicate: predicate.equal('undefined')
     },
     {
-      input: {},
-      result: funAssert.equal('{}'),
-      sync: true
+      inputs: [{}],
+      predicate: predicate.equal('{}')
     },
     {
-      input: {a: 'a'},
-      result: funAssert.equal('{a:"a"}'),
-      sync: true
+      inputs: [{a: 'a'}],
+      predicate: predicate.equal('{a:"a"}')
     },
     {
-      input: {a: {a: 'a'}},
-      result: funAssert.equal('{a:{a:"a"}}'),
-      sync: true
+      inputs: [{a: {a: 'a'}}],
+      predicate: predicate.equal('{a:{a:"a"}}')
     },
     {
-      input: [],
-      result: funAssert.equal('[]'),
-      sync: true
+      inputs: [[]],
+      predicate: predicate.equal('[]')
     },
     {
-      input: [[]],
-      result: funAssert.equal('[[]]'),
-      sync: true
+      inputs: [[[]]],
+      predicate: predicate.equal('[[]]')
     },
     {
-      input: function functionName () {},
-      result: funAssert.equal('functionName()'),
-      sync: true
+      inputs: [function functionName () {}],
+      predicate: predicate.equal('functionName()')
     },
     {
-      input: (function () { return function () {} })(),
-      result: funAssert.equal('()=>'),
-      sync: true
+      inputs: [(function () { return function () {} })()],
+      predicate: predicate.equal('()=>')
     },
     {
-      input: /^.$/,
-      result: funAssert.equal('/^.$/'),
-      sync: true
+      inputs: [/^.$/],
+      predicate: predicate.equal('/^.$/')
     },
     {
-      input: Error('uh oh'),
-      result: funAssert.equal('Error: uh oh'),
-      sync: true
+      inputs: [Error('uh oh')],
+      predicate: predicate.equal('Error: uh oh')
     }
-  ].map(funTest)
+  ].map(funTest.sync)
 })()
 
