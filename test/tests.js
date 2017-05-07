@@ -44,12 +44,12 @@
     },
     {
       input: {a: 'a'},
-      result: funAssert.equal('{"a":"a"}'),
+      result: funAssert.equal('{a:"a"}'),
       sync: true
     },
     {
       input: {a: {a: 'a'}},
-      result: funAssert.equal('{"a":{"a":"a"}}'),
+      result: funAssert.equal('{a:{a:"a"}}'),
       sync: true
     },
     {
@@ -64,70 +64,24 @@
     },
     {
       input: function functionName () {},
-      result: funAssert.equal('functionName'),
+      result: funAssert.equal('functionName()'),
       sync: true
     },
     {
       input: (function () { return function () {} })(),
-      result: funAssert.equal('=>'),
+      result: funAssert.equal('()=>'),
       sync: true
     },
     {
-      input: functionWithToStringMethod(),
-      result: funAssert.equal(functionWithToStringMethod().toString()),
+      input: /^.$/,
+      result: funAssert.equal('/^.$/'),
       sync: true
     },
     {
-      input: functionWithToStringProperty(),
-      result: funAssert.equal(functionWithToStringProperty().name),
-      sync: true
-    },
-    {
-      input: objectWithToStringProperty(),
-      result: funAssert.equal('{"toString":"gotcha!"}'),
-      sync: true
-    },
-    {
-      input: objectWithToStringMethod(),
-      result: funAssert.equal(objectWithToStringMethod().toString()),
+      input: Error('uh oh'),
+      result: funAssert.equal('Error: uh oh'),
       sync: true
     }
   ].map(funTest)
-
-  function functionWithToStringMethod () {
-    function result () {}
-
-    result.toString = function toString () {
-      return 'a special representation'
-    }
-
-    return result
-  }
-
-  function functionWithToStringProperty () {
-    function result () {}
-
-    result.toString = 'gotcha!'
-
-    return result
-  }
-
-  function objectWithToStringProperty () {
-    var result = {
-      toString: 'gotcha!'
-    }
-
-    return result
-  }
-
-  function objectWithToStringMethod () {
-    var result = {
-      toString: function toString () {
-        return 'a special representation'
-      }
-    }
-
-    return result
-  }
 })()
 
