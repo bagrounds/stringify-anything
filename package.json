@@ -3,19 +3,23 @@
   "version": "0.6.3",
   "description": "Stringify anything",
   "main": "src/index.js",
+  "browser": "dist/bundle.js",
   "scripts": {
     "pretest": "npm run lint",
     "test": "tap -Rtap --coverage-report=text-summary ./test/index.js",
-    "predependencies": "mkdir -p img",
-    "dependencies": "madge . --image img/dependencies.svg -x 'test|coverage|docs'",
-    "predependencies-test": "mkdir -p img",
-    "dependencies-test": "madge . --image img/dependencies-test.svg -x 'coverage|docs'",
     "coverage": "tap --coverage-report=lcov ./test/index.js",
+    "predependencies": "mkdir -p img",
+    "dependencies": "madge src --image img/dependencies.svg -x 'public|test|coverage|docs' --include-npm",
+    "postdependencies": "npm run dependencies-test",
+    "dependencies-test": "madge . --image img/dependencies-test.svg -x 'dist|public|coverage|docs' --include-npm",
     "pages-index": "showdown makehtml -i README.md -o public/index.html",
     "pages": "./script/pages.sh",
-    "lint": "eslint --ignore-path .gitignore --fix .",
-    "document": "jsdoc --destination docs -c .jsdoc.json -r",
-    "readme": "cat readme/* > README.md"
+    "lint": "eslint --ignore-path .gitignore --fix . --ignore-pattern dist",
+    "predocument": "rm -rf docs",
+    "document": "jsdoc -c .jsdoc.json",
+    "browserify": "browserify dist/entry.js --no-bf | uglifyjs > dist/bundle.js",
+    "readme": "cat readme/* > README.md",
+    "next-update": "next-update -k true --tldr"
   },
   "repository": {
     "type": "git",
@@ -28,13 +32,16 @@
   },
   "homepage": "https://gitlab.com/bagrounds/stringify-anything#README",
   "devDependencies": {
-    "eslint": "^3.19.0",
-    "fun-predicate": "^0.15.2",
-    "fun-test": "^0.22.1",
-    "fun-test-runner": "^0.8.1",
-    "jsdoc": "^3.4.3",
-    "madge": "^1.6.0",
-    "showdown": "^1.6.4",
-    "tap": "^10.3.1"
+    "browserify": "^15.1.0",
+    "docdash": "^0.4.0",
+    "eslint": "^4.15.0",
+    "fun-test": "^0.24.1",
+    "fun-test-runner": "^0.9.1",
+    "jsdoc": "^3.5.5",
+    "madge": "^2.2.0",
+    "next-update": "^3.6.0",
+    "showdown": "1.8.6",
+    "tap": "^11.0.1",
+    "uglify-js-es6": "^2.8.9"
   }
 }
