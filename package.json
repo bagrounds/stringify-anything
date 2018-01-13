@@ -1,6 +1,6 @@
 {
   "name": "stringify-anything",
-  "version": "0.6.3",
+  "version": "0.7.0",
   "description": "Stringify anything",
   "main": "src/index.js",
   "browser": "dist/bundle.js",
